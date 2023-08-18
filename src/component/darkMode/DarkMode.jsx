@@ -9,7 +9,6 @@ const DarkMode = () => {
     );
     const element = document.documentElement;
     const  darkTheme = window.matchMedia('(prefer-color-scheme: dark)')
-    console.log(darkTheme)
     const options = [
         {
             icon: 'sunny',
@@ -19,18 +18,13 @@ const DarkMode = () => {
             icon: 'moon',
             text: 'dark'
         },
-        {
-            icon: 'desktop-outline',
-            text: 'system'
-        },
+     
 
     ]
 
     function onWindowMatch() {
-        if (
-            localStorage.theme === 'dark' ||
-            (('theme' in localStorage) && darkTheme.matches)
-        ) {
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage)
+            && darkTheme.matches)) {
             element.classList.add('dark')
         } else {
             element.classList.remove('dark')
@@ -69,13 +63,13 @@ const DarkMode = () => {
     })
 
     return (
-        <>
+        <div className="justify-end  flex items-center gap-3">
             {
                 options?.map(options => (
 
 
                        <button
-                           className={`w-8 h-8 bg-teal-500 dark:bg-sky-600 dark:text-white leading-9 text-xl text-black rounded-xl  m-1 ${theme === options.text && 'text-sky-600 '}`}
+                           className={`w-fit h-fit dark:text-gray-400 text-gray-500  ${theme === options.text && 'dark:text-white text-gray-900 '}`}
                            onClick={() => setTheme(options.text)}
                            key={options.text}>
                            <ion-icon name={options.icon}></ion-icon>
@@ -85,7 +79,7 @@ const DarkMode = () => {
 
                 ))
             }
-        </>
+        </div>
     )
 }
 

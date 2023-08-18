@@ -13,10 +13,10 @@ const MenuItems =({openMenu, open}) => {
 
     return (
 
-        <div className={'w-full'}>
-            <ul className={open ? 'flex-col flex text-2xl z-50 text-white  px-2 absolute right-0 transition-all duration-100 ease-in-out inset-0 lg:hidden justify-center gap-3 bg-neutral-800 backdrop-blur-xl ' : 'hidden'}>
+        <div>
+            <ul className={open ? 'flex-col flex text-2xl z-50 dark:text-white  px-2 absolute right-0 transition-all duration-100 ease-in-out inset-0 lg:hidden justify-center gap-3 bg-white text-neutral-500 dark:bg-neutral-800 backdrop-blur-xl ' : 'hidden'}>
                 <XMarkIcon
-                    className='h-8 w-8  text-white absolute top-10'
+                    className='h-8 w-8 dark:text-white text-black absolute top-10'
                     onClick={openMenu} />
 
                 <NavLink to='/' className={'border-b-[1px] hover:text-sky-600'}>

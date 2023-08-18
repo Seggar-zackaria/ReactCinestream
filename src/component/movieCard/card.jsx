@@ -2,10 +2,10 @@ import {NavLink} from "react-router-dom";
 
 
 
-function Card() {
+function Card(props) {
     return (
         <>
-           <div className='bg-white rounded-lg m-3 border overflow-hidden'>
+           <div className='bg-white dark:bg-neutral-950 rounded-lg m-3 border overflow-hidden'>
               <div>
                   <img
                       className=' object-fit'

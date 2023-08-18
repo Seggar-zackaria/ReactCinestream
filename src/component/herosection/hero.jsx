@@ -38,10 +38,6 @@ function Hero() {
 
                 </div>
 
-
-                <MovieCard />
-
-
             </>
         )
 }

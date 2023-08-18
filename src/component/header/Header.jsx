@@ -2,7 +2,7 @@ import '../../App.css';
 
 import { NavLink } from 'react-router-dom';
 
-
+import DarkMode from '../darkMode/DarkMode';
 
 import MenuItems from './offCanva.jsx';
 import { Bars3BottomRightIcon } from '@heroicons/react/24/solid'
@@ -11,10 +11,6 @@ import SearchBar from './searchBar.jsx'
 import logo from '/vite.svg'
 import { useState } from 'react';
 
-
-function DarkMode() {
-    return null;
-}
 
 function Header() {
 
@@ -26,20 +22,18 @@ function Header() {
 
     return (
 
-        <header className=' w-full mx-auto p-3 dark:bg-[#1f2024]  bg-slate-50 flex justify-between items-center ' >
+        <header className='p-2 dark:bg-[#1f2024]  bg-slate-50 flex items-center'>
 
-            <div className='flex items-center'>
-                <img src={logo} to='/' alt="" />
-                <NavLink className={'uppercase font-bold dark:text-slate-200 text-black'} to="/">CineStream</NavLink>
-            </div>
+            <nav className='flex w-full justify-between items-center gap-3 dark:text-slate-200'>
 
-            <nav className=' justify-between flex items-center gap-6 dark:text-slate-200'>
+                <NavLink className={'uppercase font-bold dark:text-slate-200 text-black'} to="/">
+                    <div className='flex items-center'>
+                    <img src={logo} to='/' alt="" />
+                        <span className='hidden lg:flex' >CineStream</span>
+                    </div>   
+                </NavLink>
 
-                <div className='absolute right-6 top-3 lg:hidden hover:rounded-full p-1 dark:hover:bg-slate-700  hover:bg-slate-200'>
-                    <Bars3BottomRightIcon className='h-8 text-black hover:rounded-xl dark:text-slate-200 '  onClick={openMenu}/>
-                </div>
-
-                <ul className='hidden lg:flex  gap-7'>
+                <ul className='hidden lg:flex gap-5'>
 
                     <NavLink to='/'>
                         Home
@@ -47,13 +41,28 @@ function Header() {
                     <NavLink to="details" >
                         Details
                     </NavLink>
-
+                    
                 </ul>
-                <SearchBar />
-                <DarkMode />
-            </nav>
+            
+                <MenuItems openMenu={openMenu} open={open} />
+                
 
-            <MenuItems openMenu={openMenu} open={open} />
+                <div className='flex align-middle gap-2'>
+                    <DarkMode />
+                    <SearchBar />
+                    <div className=' lg:hidden hover:rounded-full dark:hover:bg-slate-700  hover:bg-slate-200'>
+                        <Bars3BottomRightIcon 
+                            className='h-8 text-black hover:rounded-lg dark:text-slate-200 '  
+                            onClick={openMenu}/>
+                    </div>
+                    
+                </div>
+                
+            </nav>
+         
+            
+            
+
         </header>
 
     )

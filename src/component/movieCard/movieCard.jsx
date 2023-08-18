@@ -1,30 +1,34 @@
-import React, {useRef, useEffect, useState} from "react";
+import  {useRef, useEffect, useState} from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { register } from "swiper/element/bundle";
+
 import Card from "./card.jsx";
+
 import axios from "axios";
+import tmdb from "../../api/apiConfig.js";
+
+
 
 
 function MovieCard() {
 
-
-    const options = {
-        method: 'GET',
-        headers: {
-            accept: 'application/json',
-            Authorization: 'Bearer d7ce541cbdf7e4b870ae86c885414de2'
-        }
-    };
-
     const [movies, setMovies] = useState([])
 
     useEffect(()=> {
-        axios.get('https://api.themoviedb.org/3/movie/157336?api_key=d7ce541cbdf7e4b870ae86c885414de2&append_to_response=videos' +
-            '').then((response)=>{
-            setMovies(response.data.results)
-        }).catch(err => {
-                console.log(err, 'ERROR')
-        })
+        const getData = async () => {
+            try {
+                const genreResponse = await axios.get(`https://api.themoviedb.org/3/genre/tv/list?language=en&api_key=d7ce541cbdf7e4b870ae86c885414de2&append_to_response=videos`);
+                const popularResponse = await tmdb.get("tv/popular");
+                
+                console.log("Genre Data:", genreResponse.data);
+                console.log("Popular Data:", popularResponse.data);
+                
+                setMovies(popularResponse.data.results);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+    getData()        
     },[])
 
 
@@ -63,24 +67,14 @@ function MovieCard() {
             <Swiper
 
                 ref={swiperRef} {...swiperParams}>
-                <SwiperSlide>
 
+                   
+                <SwiperSlide>
 
                     <Card />
 
-
-
-
                 </SwiperSlide>
-                <SwiperSlide>
-
-
-                    <Card />
-
-
-
-
-                </SwiperSlide>
+              
 
 
             </Swiper>

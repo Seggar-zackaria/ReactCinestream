@@ -1,4 +1,4 @@
-import React, { useRef,useCallback } from "react";
+import { useRef,useCallback } from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react"
 import Btn from "../buttons/Btn.jsx";
@@ -7,7 +7,7 @@ import { PlayCircleIcon, ClockIcon } from '@heroicons/react/24/solid'
 
 import "swiper/css";
 import "swiper/css/bundle"
-import NavButton from "./navButton";
+import CarouselNav from "./CarouselNav.jsx";
 
 
 
@@ -63,7 +63,7 @@ export default function Carousel() {
                 <SwiperSlide>Slide 7</SwiperSlide>
                 <SwiperSlide>Slide 8</SwiperSlide>
                 <SwiperSlide>Slide 9</SwiperSlide>
-                <NavButton  />
+                <CarouselNav  />
             </Swiper>
         </>
     );

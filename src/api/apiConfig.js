@@ -1,29 +1,49 @@
-
-export const baseUrl = "https://api.themoviedb.org/3"
-const apiKey = 'd7ce541cbdf7e4b870ae86c885414de2'
+import axios from "axios";
 
 
-const apiConfig = {
-    method: 'GET',
+export const apiKey = import.meta.env.VITE_API_KEY
+const baseUrl = "https://api.themoviedb.org/3"
+
+
+ const config = {
+
     headers: {
         accept: 'application/json',
-        Authorization: 'Bearer d7ce541cbdf7e4b870ae86c885414de2'
-    }
-};
+        Authorization: `Bearer ${apiKey}`
+    }, 
+
+}
 
 
+export const getTrendingMovies = async () => {
+    const res = await axios.get(`${baseUrl}/trending/movie/week`, config)
+    const data = res.data
+    return data
+  }
+  
+  export const getLatestMovie = async () => {
+    const res = await axios.get(`${baseUrl}/movie/latest`, config)
+    const data = res.data
+    return data
+  }
+  
+  export const searchMovies = async (input) => {
+    const res = await axios.get(`${baseUrl}/search/movie?query=${input}`, config)
+    const data = res.data
+    return data
+  }
+  
+  export const getMovieDetails = async (id) => {
+    const res = await axios.get(`${baseUrl}/movie/${id}`, config)
+    const data = res.data
+    return data
+  }
+  
+  export const getMovieVideos = async (id) => {
+    const res = await axios.get(`${baseUrl}/movie/${id}/videos`, config)
+    const data = res.data
+    return data
+  }
 
-// const apiConfig = {
-//     originalImage: (imgPath) => `https://image.tmdb.org/t/p/original/${imgPath}`,
-//     w500Image: (imgPath) => `https://image.tmdb.org/t/p/w500/${imgPath}`,
-//     headers: {
-//
-//         headers: {
-//             Authorization: Bearer ${apiKey},
-//             "Content-Type": "application/json",
-//         }
-//     }
-// }
 
-
-export default apiConfig
+  export default config
