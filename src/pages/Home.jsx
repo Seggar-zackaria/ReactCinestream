@@ -1,6 +1,6 @@
 import Header from "../component/header/Header.jsx";
 import Carousel from "../component/carousel/carousel";
-import MovieCard from "../component/movieCard/movieCard.jsx";
+import Latest from "../component/test.jsx";
 
 
 
@@ -15,7 +15,7 @@ export default function Home() {
            
         </div>
         <div>
-            <MovieCard />
+            <Latest />
         </div>
     
     </>
